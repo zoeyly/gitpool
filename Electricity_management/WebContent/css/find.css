@@ -1,0 +1,35 @@
+.righ{
+	text-align: center;
+	
+}
+.table{
+	font-size:25px;
+	width:70%;
+	position: absolute;
+	top: 10%;
+	left: 5%;
+}
+.message{
+	 text-align: center;
+	 width: 100%;
+	 height: 100%; 
+	 position: absolute;
+   	 top: 50px;
+   	 left:0px;
+   	 background: graytext;"
+}
+.all{
+	margin-left: 5%;
+	margin-top: 10%;
+	font-size:20px;
+	
+}
+.all table{
+	
+	text-align: center;
+	width: 95%;
+	
+}
+.all table tr{
+	height: 50px;
+}
