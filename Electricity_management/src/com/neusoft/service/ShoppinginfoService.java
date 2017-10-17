@@ -11,10 +11,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.dbutils.DbUtils;
 
+import com.neusoft.dao.Account_consumerDao;
 import com.neusoft.dao.CateDao;
 import com.neusoft.dao.ProductDao;
 import com.neusoft.dao.ShoppinginfoDao;
+import com.neusoft.entity.Account_consumer;
 import com.neusoft.entity.Cate;
+import com.neusoft.entity.PageModel;
 import com.neusoft.entity.Product;
 import com.neusoft.entity.Shoppinginfo;
 import com.neusoft.utils.DaoException;
@@ -29,10 +32,9 @@ public class ShoppinginfoService {
 		String nickname = request.getParameter("nickname");
 		String smoney = request.getParameter("money");
 		Integer money=Integer.parseInt(smoney);
-		String slasttime = request.getParameter("lasttime");
-		Integer lasttime=Integer.parseInt(slasttime);
 		
-		Shoppinginfo product=new Shoppinginfo(aid, nickname, money, lasttime);
+		
+		Shoppinginfo product=new Shoppinginfo(aid, nickname, money);
 		boolean flag = addShoppinginfo(product);
 		if(flag){
 			System.out.println(111);
@@ -43,7 +45,7 @@ public class ShoppinginfoService {
 	}
 	
 	//添加
-	private boolean addShoppinginfo(Shoppinginfo product){
+	public boolean addShoppinginfo(Shoppinginfo product){
 		Connection conn = null;
 		boolean flag = false;
 		ShoppinginfoDao productDao=DaoFactory.getInstance("Shoppinginfo", ShoppinginfoDao.class);
@@ -186,5 +188,39 @@ public class ShoppinginfoService {
 		ShoppinginfoDao productDao=DaoFactory.getInstance("Shoppinginfo", ShoppinginfoDao.class);
 		return productDao.showShoppinginfoAll();
 	}
+
+	public void getMsgsLogic(HttpServletRequest request,HttpServletResponse response) throws DaoException,ServletException,IOException{
+		String pageNo=request.getParameter("pageNo");
+		String pageSize=request.getParameter("pageSize");
+		try {
+			int _pageNo=Integer.parseInt(pageNo);
+			int _pageSize=Integer.parseInt(pageSize);
+			PageModel<Shoppinginfo>  cates=getPageModel(_pageNo,_pageSize);
+			if(cates!=null) {
+				//总页数
+				int totalPageSize= (cates.getTotalcount()%_pageSize==0?cates.getTotalcount()/_pageSize:cates.getTotalcount()/_pageSize+1);
+				cates.setTotalPageSize(totalPageSize);
+				cates.setPageNo(_pageNo);
+			}
+			request.setAttribute("cates", cates);
+//			request.getRequestDispatcher("Cate.jsp").forward(request, response);
+			request.getRequestDispatcher("background/listShopinfo.jsp").forward(request, response);
+		}catch(NumberFormatException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * 分页查询
+	 */
+	public PageModel<Shoppinginfo> getPageModel(int pageNo,int pageSize) throws DaoException{
+		ShoppinginfoDao productDao=DaoFactory.getInstance("Shoppinginfo", ShoppinginfoDao.class);
+		return productDao.getPageModel(pageNo, pageSize);
+	}
+
+	public static void main(String[] args) {
+	 System.out.println(	new ShoppinginfoService().getPageModel(2, 2));
+	}
+	
 	
 }

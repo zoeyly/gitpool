@@ -1,8 +1,5 @@
-
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
- <%@ page import="java.util.*,com.neusoft.entity.*,java.text.*" %> 
-     
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <%@ page import="com.neusoft.entity.*"%> 
 <%@page import="com.neusoft.utils.*"%>
 <%@page import="java.util.List"%>
@@ -11,228 +8,113 @@
 <%@ page import="com.neusoft.daoimpl.*"%> 
 <%@page import="com.neusoft.service.*"%>
 <%@ page import="com.neusoft.Filert.*"%> 
-    
-<!DOCTYPE html>
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>前台 -  用户界面</title>
+<link rel="stylesheet" href="css/login.css" />
+</head>
 
-	<head>
-		<title>类别管理</title>
-		<meta charset="utf-8" />
+<body> 
+<div id="top">
+<ul>
+	<li>喵，欢迎来天猫</li>
 
-	</head>
-	<body>
-		<div id="_div">
-			<div id="_button" >
-				<div id="anniu">	
-				 <a id="aa" href="AddFL.jsp"  >添加 </a>
-			
-				
-				
-				</div>
-			</div>
-			
-			<div id="content_form" >
-				<form method="get" action="">
-					<table>
-				
-					<tr>
-						<td>
-						<input type="checkbox" name="all" id="zong" value="复选框"  onclick="SelectAll()"/> 全选
-						</td>
-						<td>cid</td>
-						<td>cname</td>
-						<td>pid</td>
-						<td>修改</td>
-						<td>删除</td>
-					</tr>
-					<%
-						 Object obj=request.getAttribute("cates");
-						 if(obj!=null){// 
-				        	  PageModel<Cate> pageModel=(PageModel<Cate>)obj;
 
-				          
-				              for(int i=0;i<pageModel.getDatas().size();i++){ 
-				     %>
-					<tr>
-						<td>
-						<input type="checkbox" name="checkbox" id="a" value="复选框" />
-						</td>
-						<td><%=pageModel.getDatas().get(i).getCid()%> </td>
-						<td><%=pageModel.getDatas().get(i).getCname()%></td>
-						<td><%=pageModel.getDatas().get(i).getPid()%></td>
-						<td><a href="#">修改</a></td>
-						<td>
-							<a href="#">
-							<form id="delete" action="deleteCateServlet" method="post">
-								<input id="deletecate" type="button" value="删除" onclick="document.getElementById('delete').submit();">
-							</form>
-							</a>
-						</td>
-					</tr>
-					<%
-								}
-				              
-						%>
-				</table>
-					
-				</form>
-				
-		   
-            <div class="msg_page">
-      		<div  style="text-align: center">
-      	共<%=pageModel.getTotalcount() %>条记录 <%=pageModel.getPageNo() %>/<%=pageModel.getTotalPageSize() %>页
-      	&nbsp;<a href="CateServlet?pageNo=1&pageSize=6">首页</a> 
-      
-      	<a href="CateServlet?&pageNo=<%=pageModel.getPageNo()-1==0? pageModel.getPageNo(): pageModel.getPageNo()-1%>&pageSize=5">上一页</a>&nbsp;
-      
-      	<a href="CateServlet?&pageNo=<%=pageModel.getPageNo()==pageModel.getTotalPageSize()? pageModel.getPageNo(): pageModel.getPageNo()+1%>&pageSize=5">下一页</a> 
-      	
-      	
-      	<a href="CateServlet?pageNo=<%=pageModel.getTotalPageSize()%>&pageSize=5">尾页</a>
-      	&nbsp;
-      	第<select onChange="if(this.value==options[selectedIndex].value){location='CateServlet?&pageNo='+this.value+'&pageSize=5'}">
-         
-        
-        <%
-           if(pageModel!=null){
-        	   int _totalPageSize=pageModel.getTotalPageSize(); 
-        	   for(int i=0;i<_totalPageSize;i++){
-        	     
-        		    if(pageModel.getPageNo()==(i+1)){%>
-        		    	
-        		    <option value="<%=i+1 %>" selected="selected"><%=(i+1)%></option>
-        		  <%  }else{%>
-        			  <option value="<%=i+1 %>" ><%=(i+1)%></option>
-        		  <%}
-        	   }
-           }
-        %>
-       
-       
-        
-        
-      	</select>页
-      		</div>
-      	 </div>
-       <!--留言列表End-->   
-              
-              
-              
-         <%
-         	}
-         %>
-    
-    	
-			
-		</div>
-	</body>
+    <li><a href="http://localhost:8080/Electricity_management/index.jsp">用户：${user.loginname}</a></li>
+    <li><a href="http://localhost:8080/Electricity_management/zhuce.jsp">免费注册</a></li>
+    <li><a href="#">我的淘宝</a></li>
+    <li><a href="#">淘宝网</a></li>
+    <li><a href="#">商家支持</a></li>
+    <li><a href="#">网站导航</a></li>
+    <li><img src="img/u=3655165999,725079547&fm=27&gp=0.jpg"/>
+    	<a href="shop.jsp">购物车</a>
+    </li>
+</ul>
+</div>
+
+<div id="left">
+	
+	<div>
+		<h1>商品类别</h1>
+	</div>
+	<%
+			CateService mbs = new CateService();
+			List<Cate> list=mbs.showCateAll();
+			request.setAttribute("all", list);
+	%>
+	<%
+    			for(int i=0; i<list.size(); i++){
+    				Cate mb=list.get(i);
+    	%>
+	<div id="message">
+		<a href="http://localhost:8080/Electricity_management/loginCate?cid=<%=list.get(i).getCid() %>">
+			<%=mb.getCname()%>
+		</a>
+	</div>
+	
+ <% 		
+		 		}
+    	%>
 	
 
-<script>
+</div>
+
+<div id="right">
+	<%
+			ProductService bs = new ProductService();
+			List<Product> ist=bs.showProductAll();
+			request.setAttribute("all", ist);
+	%>
+	<%
+    			for(int i=0; i<ist.size(); i++){
+    				Product mb=ist.get(i);
+    	%>
 	
-	function ChkAllClick(sonName, cbAllId) {
-				var arrSon = document.getElementsByName(sonName);
-				var cbAll = document.getElementById(cbAllId);
-				var tempState = cbAll.checked; //checked 属性规定在页面加载时应该被预先选定的 input 元素
-				for(i = 0; i < arrSon.length; i++) {
-					if(arrSon[i].checked != tempState)
-						arrSon[i].click();//可模拟在按钮上的一次鼠标单击。
-				}
-		}
-function change(obj){
-	obj.style.color="#0000FF";
-}
-
-function change2(obj){
-	obj.style.color="#000000";
-}
-
-function delte(){	
-	var arrSon = document.getElementsByName("Son");
+	<form id="jvForm" action="loginShopServlet?aid=${user.id}&nickname=${user.loginname}&price=<%=mb.getPrice() %>" method="post">
+	<table class="table" width="200" border="1" cellspacing="1" cellpadding="1">
 	
-	for(var i=0;i<arrSon.length;i++){
+	  <tr>
+	    <td colspan="2" align="center" valign="middle"><%=mb.getId() %></td>
+	  </tr>
+	  <tr>
+	    <td align="center" valign="middle" ><%=mb.getPname() %></td>
+	    <td align="center" valign="middle" ><%=mb.getCid()%></td>
+	  </tr>
+	  <tr>
+	    <td colspan="2" align="center" valign="middle"><%=mb.getPic()%></td>
+	  </tr>
+	  <tr>
+	    <td align="center" valign="middle"><%=mb.getPdetail()%></td>
+	    <td align="center" valign="middle"><button onclick="addShoppinginfoServlet" value="加入购物车">加入购物车</button></td>
+	  </tr>
+	</table>
+	</form>
+<%} %>
 	
-		if(arrSon[i].checked == true){
-			
-			
-			window.self.location = "DeleteCate?cid=" + arrSon[i].value;
-		}
-	}		
-}
+		
+<!-- 
+		
+<table width="200" border="1" cellspacing="1" cellpadding="1">
+  <tr>
+    <td colspan="2" align="center" valign="middle">商品编号</td>
+  </tr>
+  <tr>
+    <td align="center" valign="middle" >商品名称</td>
+    <td align="center" valign="middle" >商品类别</td>
+  </tr>
+  <tr>
+    <td colspan="2" align="center" valign="middle">商品图片</td>
+  </tr>
+  <tr>
+    <td align="center" valign="middle">商品详情</td>
+    <td align="center" valign="middle">加入购物车</td>
+  </tr>
+</table>
+		-->
 
+</div>
 
-function update(){	
-	var arrSon = document.getElementsByName("Son");
-	
-	for(var i=0;i<arrSon.length;i++){
-	
-		if(arrSon[i].checked == true){
-			alert("确定要修改吗")
-			/* alert(arrSon[i].value); */
-			
-			window.self.location = "updateCate.jsp?cid=" + arrSon[i].value;
-		}
-	}		
-}
-
-
-
-
-</script>
-<style>
-	
-#_div{
-}
-
-
-
-
-#_button{
-	margin-top: 20px;
-	margin-bottom: 10px;
-
-	
-}
-#anniu .T {
-	border-radius:30px;
-	outline: none;
-	
-	margin-left: 10px;
-	
-}
-
-#content_form{
-	background-color: #F5F5F5;
-	margin-top: 20px;
-}
-#content_form table{
-	margin: 0 auto;
-	width: 900px;
-	text-align: center;
-}
-#content_form table img{
-	width: 40px;
-	height: 40px;
-}
-
-#content_form th{
-	width: 80px;
-	height: 40px;
-	font-size: 25px;
-}
-#content_form tr{
-	font-size: 18px; 	
-	width: 80px;
-	height: 40px;
-	border: 1px solid firebrick;
-}
- span{
-	cursor: pointer;
-}
-#aa{
-	font-size: 25px;
-}
-
-</style>
-
+</body>
 </html>

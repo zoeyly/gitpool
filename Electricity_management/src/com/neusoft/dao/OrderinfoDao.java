@@ -3,6 +3,7 @@ package com.neusoft.dao;
 import java.util.List;
 
 import com.neusoft.entity.Orderinfo;
+import com.neusoft.entity.PageModel;
 import com.neusoft.utils.DaoException;
 
 public interface OrderinfoDao {
@@ -14,4 +15,6 @@ public interface OrderinfoDao {
 		public boolean changeOrderinfo(Orderinfo orderinfo) throws DaoException;
 		//²éÑ¯ËùÓÐ
 		public List<Orderinfo> showOrderinfoAll() throws DaoException;
+		
+		public PageModel<Orderinfo> getPageModel(int pageNo, int pageSize) throws DaoException;
 }

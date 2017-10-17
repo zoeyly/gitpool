@@ -14,6 +14,7 @@ import org.apache.commons.dbutils.DbUtils;
 import com.neusoft.dao.AddressDao;
 import com.neusoft.dao.RuleDao;
 import com.neusoft.entity.Address;
+import com.neusoft.entity.PageModel;
 import com.neusoft.entity.Rule;
 import com.neusoft.utils.DaoException;
 import com.neusoft.utils.DaoFactory;
@@ -25,7 +26,7 @@ public class AddressService {
 		String province = request.getParameter("province");
 		String city = request.getParameter("city");
 		String area = request.getParameter("area");
-	
+		System.out.println(province+":"+city+":"+ area);
 		Address address=new Address(province, city, area);
 		boolean flag = addAddress(address);
 		if(flag){
@@ -37,7 +38,7 @@ public class AddressService {
 	}
 	
 	//添加
-	private boolean addAddress(Address address){
+	public boolean addAddress(Address address){
 		Connection conn = null;
 		boolean flag = false;
 		AddressDao addressDao=DaoFactory.getInstance("addressdao",AddressDao.class);
@@ -45,26 +46,12 @@ public class AddressService {
 			conn = UtilC3P0.getConnection();
 			conn.setAutoCommit(false);
 			flag = addressDao.addAddress(address);
-			if(flag){
-				conn.commit();
-				return true;
-			}
+
 		}catch(DaoException e){
-			try {
-				conn.rollback();
-			} catch (SQLException e1) {
-				e1.printStackTrace();
-			}
 			System.out.println(e.getMessage());
 		}catch (SQLException e) {
-			try {
-				conn.rollback();
-			} catch (SQLException e1) {
-				e1.printStackTrace();
-			}
 			e.printStackTrace();
 		}finally{
-			DbUtils.closeQuietly(conn);
 		}
 		return false;
 	}
@@ -174,5 +161,41 @@ public class AddressService {
 		AddressDao addressDao=DaoFactory.getInstance("addressdao",AddressDao.class);
 		return addressDao.showAddressAll();
 	}
+	
+
+	public void getMsgsLogic(HttpServletRequest request,HttpServletResponse response) throws DaoException,ServletException,IOException{
+		String pageNo=request.getParameter("pageNo");
+		String pageSize=request.getParameter("pageSize");
+		try {
+			int _pageNo=Integer.parseInt(pageNo);
+			int _pageSize=Integer.parseInt(pageSize);
+			PageModel<Address>  cates=getPageModel(_pageNo,_pageSize);
+			if(cates!=null) {
+				//总页数
+				int totalPageSize= (cates.getTotalcount()%_pageSize==0?cates.getTotalcount()/_pageSize:cates.getTotalcount()/_pageSize+1);
+				cates.setTotalPageSize(totalPageSize);
+				cates.setPageNo(_pageNo);
+			}
+			request.setAttribute("cates", cates);
+//			request.getRequestDispatcher("Cate.jsp").forward(request, response);
+			request.getRequestDispatcher("background/listAddress.jsp").forward(request, response);
+		}catch(NumberFormatException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * 分页查询
+	 */
+	public PageModel<Address> getPageModel(int pageNo,int pageSize) throws DaoException{
+		AddressDao addressDao=DaoFactory.getInstance("addressdao",AddressDao.class);
+	
+		return addressDao.getPageModel(pageNo, pageSize);
+	}
+
+	public static void main(String[] args) {
+	 System.out.println(	new AddressService().getPageModel(2, 2));
+	}
+	
 	
 }

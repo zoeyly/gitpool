@@ -4,11 +4,16 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
+import org.apache.commons.dbutils.DbUtils;
 import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.ResultSetHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
+import org.apache.commons.dbutils.handlers.ScalarHandler;
 
 import com.neusoft.dao.AddressDao;
 import com.neusoft.entity.Address;
+import com.neusoft.entity.PageModel;
+import com.neusoft.entity.Product;
 import com.neusoft.entity.Rule;
 import com.neusoft.utils.DaoException;
 import com.neusoft.utils.UtilC3P0;
@@ -33,12 +38,12 @@ public class AddressDaoImpl implements AddressDao {
 			String sql = "insert into address(province,city,area) values(?,?,?)";
 			int count = qr.update(conn, sql, address.getProvince(),address.getCity(),address.getArea());
 				if(count>0){
-					System.out.println("插入规格成功");
+					System.out.println("插入地址成功");
 					System.out.println(count);
 					return true;
 				}
 		} catch (SQLException e) {
-			throw new DaoException("插入规格失败!",e);
+			throw new DaoException("插入地址失败!",e);
 		}	
 		return false;
 	}
@@ -87,5 +92,48 @@ try {
 		}
 		return list;
 	}
+	
+	@Override
+	public PageModel<Address> getPageModel(int pageNo, int pageSize) throws DaoException {
+		QueryRunner qRunner= new  QueryRunner();
+		PageModel<Address> model=null;
+		Connection conn = null;
+		 try {
+			conn  =	UtilC3P0.getConnection();
+			//查询所有记录
+			String totalcount_sql ="select count(id) from Address ";
+			//查询总的记录 ScalarHandler:第一行第一列数据
+			ResultSetHandler<Long> rsh = new ScalarHandler<Long>(); 
+			Integer totalcount =  qRunner.query(conn,totalcount_sql, rsh).intValue();
+			
+			
+			if(totalcount>0) {
+				model= new PageModel<Address>();
+				//给PageModel 赋值  所有记录
+				model.setTotalcount(totalcount);
+				//分页查询
+				String sql ="select id,province,city,area from   Address limit ?,? ";
+				
+				ResultSetHandler<List<Address>> RSH = new BeanListHandler<Address>(Address.class);
+				Object [] params = {(pageNo-1)*pageSize,pageSize};
+				if(conn.isClosed()) {
+					conn  =	UtilC3P0.getConnection();
+				}
+				List<Address> msgs  = qRunner.query(conn, sql, RSH,params);
+				//给PageModel 赋值   每页显示数据
+				model.setDatas(msgs);
+			}
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			throw new DaoException("分页查询出错",e);
+		}finally {
+			DbUtils.closeQuietly(conn);
+		}
+		return model;
+	}
+
 
 }

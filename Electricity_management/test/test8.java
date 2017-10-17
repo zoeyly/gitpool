@@ -7,7 +7,7 @@ public class test8 {
 	
 	public static void insertProduct() {
 		
-		Shoppinginfo address=new Shoppinginfo(1, "a", 10, 10);
+		Shoppinginfo address=new Shoppinginfo(1, "a", 10);
 		ShoppinginfoDaoImpl daoImpl=new ShoppinginfoDaoImpl();
 		daoImpl.insertShoppinginfo(address);
 		}

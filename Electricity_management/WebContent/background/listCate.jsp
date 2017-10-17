@@ -144,6 +144,12 @@
 				查询商品
 			</div>
 			</a>
+			<a href="http://localhost:8080/Electricity_management/listPorductServlet?pageSize=5&pageNo=1">
+			<div id="list">
+				查询分页
+			</div>
+			</a>
+			
 		</div>
    	</div>
 	<div>
@@ -169,6 +175,11 @@
 			<a href="findRule.jsp">
 			<div id="find">
 				查询规格
+			</div>
+			</a>
+			<a href="http://localhost:8080/Electricity_management/listRuleServlet?pageSize=5&pageNo=1">
+			<div id="list">
+				查询分页
 			</div>
 			</a>
 		</div>
@@ -198,6 +209,11 @@
 				查询订单
 			</div>
 			</a>
+			<a href="http://localhost:8080/Electricity_management/listOrderinfoServlet?pageSize=5&pageNo=1">
+			<div id="list">
+				查询分页
+			</div>
+			</a>
 		</div>
    	</div>		
 		<div>
@@ -223,6 +239,11 @@
 			<a href="findAddress.jsp">
 			<div id="find">
 				查询地址
+			</div>
+			</a>
+			<a href="http://localhost:8080/Electricity_management/listAddressServlet?pageSize=5&pageNo=1">
+			<div id="list">
+				查询分页
 			</div>
 			</a>
 		</div>
@@ -252,6 +273,11 @@
 				查询卖家
 			</div>
 			</a>
+			<a href="http://localhost:8080/Electricity_management/listACCProductServlet?pageSize=5&pageNo=1">
+			<div id="list">
+				查询分页
+			</div>
+			</a>
 		</div>
    	</div>		
 				<div>
@@ -279,6 +305,11 @@
 				查询买家
 			</div>
 			</a>
+			<a href="http://localhost:8080/Electricity_management/listConsumerServlet?pageSize=5&pageNo=1">
+			<div id="list">
+				查询分页
+			</div>
+			</a>
 		</div>
    	</div>
   	  	<div >
@@ -304,6 +335,11 @@
 			<a href="findShoppinginfo.jsp">
 			<div id="find">
 				查询购物车
+			</div>
+			</a>
+			<a href="http://localhost:8080/Electricity_management/listShopinfoServlet?pageSize=5&pageNo=1">
+			<div id="list">
+				查询分页
 			</div>
 			</a>
 		</div>
@@ -336,9 +372,8 @@
     
 
     	
-    
-			<form class="list" method="get" action="">
-				<table>
+			<form method="get" action="" >
+					<table class="table" border="1" cellspacing="1" cellpadding="1">
 				
 					<tr>
 						<td>
@@ -360,18 +395,14 @@
 				     %>
 					<tr>
 						<td>
-						<input type="checkbox" name="all" id="a" value="复选框" />
+						<input type="checkbox" name="checkbox" id="a" value="复选框" />
 						</td>
 						<td><%=pageModel.getDatas().get(i).getCid()%> </td>
 						<td><%=pageModel.getDatas().get(i).getCname()%></td>
 						<td><%=pageModel.getDatas().get(i).getPid()%></td>
 						<td><a href="#">修改</a></td>
 						<td>
-							<a href="#">
-							<form id="delete" action="deleteCateServlet" method="post">
-								<input id="deletecate" type="button" value="删除" onclick="document.getElementById('delete').submit();">
-							</form>
-							</a>
+							<input id="deletecate" type="button" value="删除" onclick="document.getElementById('delete').submit();">
 						</td>
 					</tr>
 					<%
@@ -383,19 +414,19 @@
 				</form>
 				
 		   
-        <div class="msg_page">
+            <div class="msg_page">
       		<div  style="text-align: center">
       	共<%=pageModel.getTotalcount() %>条记录 <%=pageModel.getPageNo() %>/<%=pageModel.getTotalPageSize() %>页
-      	&nbsp;<a href="http://localhost:8080/Electricity_management/findCatesServlet?pageSize=5&pageNo=1">首页</a> 
+      	&nbsp;<a href="http://localhost:8080/Electricity_management/findCatesServlet?pageNo=1&pageSize=5">首页</a> 
       
-      	<a href="http://localhost:8080/Electricity_management/findCatesServlet?&pageNo=<%=pageModel.getPageNo()-1==0? pageModel.getPageNo(): pageModel.getPageNo()-1%>&pageSize=5">上一页</a>&nbsp;
+      	<a href="http://localhost:8080/Electricity_management/findCatesServlet?pageNo=<%=pageModel.getPageNo()-1==0? pageModel.getPageNo(): pageModel.getPageNo()-1%>&pageSize=5">上一页</a>&nbsp;
       
-      	<a href="http://localhost:8080/Electricity_management/findCatesServlet?&pageNo=<%=pageModel.getPageNo()==pageModel.getTotalPageSize()? pageModel.getPageNo(): pageModel.getPageNo()+1%>&pageSize=5">下一页</a> 
+      	<a href="http://localhost:8080/Electricity_management/findCatesServlet?pageNo=<%=pageModel.getPageNo()==pageModel.getTotalPageSize()? pageModel.getPageNo(): pageModel.getPageNo()+1%>&pageSize=5">下一页</a> 
       	
       	
       	<a href="http://localhost:8080/Electricity_management/findCatesServlet?pageNo=<%=pageModel.getTotalPageSize()%>&pageSize=5">尾页</a>
       	&nbsp;
-      	第<select onChange="if(this.value==options[selectedIndex].value){location='http://localhost:8080/Electricity_management/findCatesServlet?&pageNo='+this.value+'&pageSize=5'}">
+      	第<select onChange="if(this.value==options[selectedIndex].value){location='http://localhost:8080/Electricity_management/findCatesServlet?pageNo='+this.value+'&pageSize=5'}">
          
         
         <%
@@ -412,20 +443,15 @@
         	   }
            }
         %>
-       
-       
-        
         
       	</select>页
       		</div>
       	 </div>
-       <!--留言列表End-->   
               
-              
-       	   <%
-           }
-        %>
-			
+         <%
+         	}
+         %>
+
 				
 				
 				

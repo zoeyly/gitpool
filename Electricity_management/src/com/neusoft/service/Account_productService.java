@@ -12,7 +12,10 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.dbutils.DbUtils;
 
 import com.neusoft.dao.Account_productDao;
+import com.neusoft.dao.RuleDao;
 import com.neusoft.entity.Account_product;
+import com.neusoft.entity.PageModel;
+import com.neusoft.entity.Rule;
 import com.neusoft.utils.DaoException;
 import com.neusoft.utils.DaoFactory;
 import com.neusoft.utils.UtilC3P0;
@@ -224,5 +227,40 @@ public Account_product login(Account_product mAcc){
 		
 		return mAcc;
 	}
+
+
+public void getMsgsLogic(HttpServletRequest request,HttpServletResponse response) throws DaoException,ServletException,IOException{
+	String pageNo=request.getParameter("pageNo");
+	String pageSize=request.getParameter("pageSize");
+	try {
+		int _pageNo=Integer.parseInt(pageNo);
+		int _pageSize=Integer.parseInt(pageSize);
+		PageModel<Account_product>  cates=getPageModel(_pageNo,_pageSize);
+		if(cates!=null) {
+			//总页数
+			int totalPageSize= (cates.getTotalcount()%_pageSize==0?cates.getTotalcount()/_pageSize:cates.getTotalcount()/_pageSize+1);
+			cates.setTotalPageSize(totalPageSize);
+			cates.setPageNo(_pageNo);
+		}
+		request.setAttribute("cates", cates);
+//		request.getRequestDispatcher("Cate.jsp").forward(request, response);
+		request.getRequestDispatcher("background/listACCProduct.jsp").forward(request, response);
+	}catch(NumberFormatException e) {
+		e.printStackTrace();
+	}
+}
+
+/**
+ * 分页查询
+ */
+public PageModel<Account_product> getPageModel(int pageNo,int pageSize) throws DaoException{
+	Account_productDao account_consumerDao=DaoFactory.getInstance("accproductdao",Account_productDao.class);
+
+	return account_consumerDao.getPageModel(pageNo, pageSize);
+}
+
+public static void main(String[] args) {
+ System.out.println(	new RuleService().getPageModel(2, 2));
+}
 
 }

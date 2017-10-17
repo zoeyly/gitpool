@@ -9,6 +9,8 @@
 <link  type="text/css" rel="stylesheet"  href="css/index.css"/>
 <link rel="stylesheet" href="css/add.css" />
 <script type="text/javascript" src="js/login.js" ></script>
+<script type="text/javascript" src="js/jquery-1.11.3.js" ></script>
+<script type="text/javascript" src="js/city.js"></script>
 </head>
 
 <body>
@@ -78,7 +80,7 @@
  </div>
  <div class="left-menu" style="height:949px;">
   <div class="menu-list">
-        	        	<!-- 类别-->
+  	<!-- 类别-->
    	<div >
    		<div id="_curd" onclick="_curd()">
 			类别
@@ -102,6 +104,11 @@
 			<a href="findCate.jsp">
 			<div id="find">
 				查询类别
+			</div>
+			</a>
+			<a href="http://localhost:8080/Electricity_management/findCatesServlet?pageSize=5&pageNo=1">
+			<div id="list">
+				查询分页
 			</div>
 			</a>
 		</div>
@@ -131,6 +138,12 @@
 				查询商品
 			</div>
 			</a>
+			<a href="http://localhost:8080/Electricity_management/listPorductServlet?pageSize=5&pageNo=1">
+			<div id="list">
+				查询分页
+			</div>
+			</a>
+			
 		</div>
    	</div>
 	<div>
@@ -142,7 +155,8 @@
 			<div id="add" >
 				添加规格
 			</div>
-			</a href="deleteRule.jsp">
+			</a>
+			<a href="deleteRule.jsp">
 			<div id="delect" >
 				删除规格
 			</div>
@@ -157,6 +171,11 @@
 				查询规格
 			</div>
 			</a>
+			<a href="http://localhost:8080/Electricity_management/listRuleServlet?pageSize=5&pageNo=1">
+			<div id="list">
+				查询分页
+			</div>
+			</a>
 		</div>
    	</div>		
 	<div>
@@ -164,7 +183,7 @@
 			订单
 		</div>
 		<div id="left_orderinfo">
-			<a href="ddOrderinfo.jsp">
+			<a href="addOrderinfo.jsp">
 			<div id="add" >
 				添加订单
 			</div>
@@ -174,7 +193,7 @@
 				删除订单
 			</div>
 			</a>
-			<a href="hangeOrderinfo.jsp">
+			<a href="changeOrderinfo.jsp">
 			<div id="change" >
 				修改订单
 			</div>
@@ -182,6 +201,11 @@
 			<a href="findOrderinfo.jsp">
 			<div id="find">
 				查询订单
+			</div>
+			</a>
+			<a href="http://localhost:8080/Electricity_management/listOrderinfoServlet?pageSize=5&pageNo=1">
+			<div id="list">
+				查询分页
 			</div>
 			</a>
 		</div>
@@ -211,6 +235,11 @@
 				查询地址
 			</div>
 			</a>
+			<a href="http://localhost:8080/Electricity_management/listAddressServlet?pageSize=5&pageNo=1">
+			<div id="list">
+				查询分页
+			</div>
+			</a>
 		</div>
    	</div>		
 				<div>
@@ -233,9 +262,14 @@
 				修改卖家
 			</div>
 			</a>
-			<a href="indProduct.jsp">
+			<a href="findProduct.jsp">
 			<div id="find">
 				查询卖家
+			</div>
+			</a>
+			<a href="http://localhost:8080/Electricity_management/listACCProductServlet?pageSize=5&pageNo=1">
+			<div id="list">
+				查询分页
 			</div>
 			</a>
 		</div>
@@ -265,6 +299,11 @@
 				查询买家
 			</div>
 			</a>
+			<a href="http://localhost:8080/Electricity_management/listConsumerServlet?pageSize=5&pageNo=1">
+			<div id="list">
+				查询分页
+			</div>
+			</a>
 		</div>
    	</div>
   	  	<div >
@@ -292,8 +331,14 @@
 				查询购物车
 			</div>
 			</a>
+			<a href="http://localhost:8080/Electricity_management/listShopinfoServlet?pageSize=5&pageNo=1">
+			<div id="list">
+				查询分页
+			</div>
+			</a>
 		</div>
    	</div>
+	
 	
 	
 
@@ -330,23 +375,34 @@
 				   	</td>
 					<tr>
 					    <td >
-				   			province:
+				   			省:
 				   		</td>
 				   		<td>
-				   			<input type="text" name="province"></br>
+				   		    <select id="province" name="province">
+						        <option value="省份（市）">--请选择--</option>
+						    </select>
+<!--<input type="text" name="province"></br>  -->				   			
 				   		</td>
 					</tr>
 					<tr>
 					    <td>
-					    	city:
+					    	市:
 					    </td>
-					    <td><input type="text" name="city"></br></td>
+					    <td>
+					     <select id="city" name="city">
+					        <option value="市（区）">--请选择--</option>
+					    </select>
+					    </td>
 					</tr>
 					<tr>
 					    <td>
-					    	area:
+					    	县:
 					    </td>
-					    <td><input type="text" name="area"></br></td>
+					    <td>
+					    <select id="county" name="area">
+					        <option value="市（区）">--请选择--</option>
+					    </select>
+					    </td>
 					</tr>
 					<tr>
 				   		<td colspan="2" >
@@ -368,4 +424,5 @@
    </div>
   
 </body>
+
 </html>

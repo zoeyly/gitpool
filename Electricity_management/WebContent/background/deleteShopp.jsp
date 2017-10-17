@@ -78,8 +78,7 @@
  </div>
  <div class="left-menu" style="height:949px;">
   <div class="menu-list">
-   	<!-- 类别-->
-   	<!-- 类别-->
+  	<!-- 类别-->
    	<div >
    		<div id="_curd" onclick="_curd()">
 			类别
@@ -103,6 +102,11 @@
 			<a href="findCate.jsp">
 			<div id="find">
 				查询类别
+			</div>
+			</a>
+			<a href="http://localhost:8080/Electricity_management/findCatesServlet?pageSize=5&pageNo=1">
+			<div id="list">
+				查询分页
 			</div>
 			</a>
 		</div>
@@ -132,6 +136,12 @@
 				查询商品
 			</div>
 			</a>
+			<a href="http://localhost:8080/Electricity_management/listPorductServlet?pageSize=5&pageNo=1">
+			<div id="list">
+				查询分页
+			</div>
+			</a>
+			
 		</div>
    	</div>
 	<div>
@@ -157,6 +167,11 @@
 			<a href="findRule.jsp">
 			<div id="find">
 				查询规格
+			</div>
+			</a>
+			<a href="http://localhost:8080/Electricity_management/listRuleServlet?pageSize=5&pageNo=1">
+			<div id="list">
+				查询分页
 			</div>
 			</a>
 		</div>
@@ -186,6 +201,11 @@
 				查询订单
 			</div>
 			</a>
+			<a href="http://localhost:8080/Electricity_management/listOrderinfoServlet?pageSize=5&pageNo=1">
+			<div id="list">
+				查询分页
+			</div>
+			</a>
 		</div>
    	</div>		
 		<div>
@@ -211,6 +231,11 @@
 			<a href="findAddress.jsp">
 			<div id="find">
 				查询地址
+			</div>
+			</a>
+			<a href="http://localhost:8080/Electricity_management/listAddressServlet?pageSize=5&pageNo=1">
+			<div id="list">
+				查询分页
 			</div>
 			</a>
 		</div>
@@ -240,6 +265,11 @@
 				查询卖家
 			</div>
 			</a>
+			<a href="http://localhost:8080/Electricity_management/listACCProductServlet?pageSize=5&pageNo=1">
+			<div id="list">
+				查询分页
+			</div>
+			</a>
 		</div>
    	</div>		
 				<div>
@@ -265,6 +295,11 @@
 			<a href="findConsumer.jsp">
 			<div id="find">
 				查询买家
+			</div>
+			</a>
+			<a href="http://localhost:8080/Electricity_management/listConsumerServlet?pageSize=5&pageNo=1">
+			<div id="list">
+				查询分页
 			</div>
 			</a>
 		</div>
@@ -294,11 +329,14 @@
 				查询购物车
 			</div>
 			</a>
+			<a href="http://localhost:8080/Electricity_management/listShopinfoServlet?pageSize=5&pageNo=1">
+			<div id="list">
+				查询分页
+			</div>
+			</a>
 		</div>
    	</div>
 	
-	
-
 
   </div>
  </div>

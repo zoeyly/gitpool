@@ -14,6 +14,6 @@ public interface RuleDao {
 	public boolean changeRule(Rule rule) throws DaoException;
 	public List<Rule> showRuleAll() throws DaoException;
 	
-	public PageModel<Rule> showPro(int pageNo, int pageSize) throws DaoException;
-	public int getProTotalRecords() throws DaoException;
+	
+	public PageModel<Rule> getPageModel(int pageNo, int pageSize) throws DaoException;
 }

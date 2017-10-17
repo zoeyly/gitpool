@@ -13,7 +13,9 @@ import org.apache.commons.dbutils.DbUtils;
 
 import com.neusoft.dao.CateDao;
 import com.neusoft.dao.ProductDao;
+import com.neusoft.daoimpl.ProductDaoImpl;
 import com.neusoft.entity.Cate;
+import com.neusoft.entity.PageModel;
 import com.neusoft.entity.Product;
 import com.neusoft.utils.DaoException;
 import com.neusoft.utils.DaoFactory;
@@ -197,5 +199,62 @@ public class ProductService {
 		ProductDao productDao=DaoFactory.getInstance("productdao", ProductDao.class);
 		return productDao.showProductAll();
 	}
+	
+	
+	
+	public void getMsgsLogic(HttpServletRequest request,HttpServletResponse response) throws DaoException,ServletException,IOException{
+		String pageNo=request.getParameter("pageNo");
+		String pageSize=request.getParameter("pageSize");
+		try {
+			int _pageNo=Integer.parseInt(pageNo);
+			int _pageSize=Integer.parseInt(pageSize);
+			PageModel<Product>  cates=getPageModel(_pageNo,_pageSize);
+			if(cates!=null) {
+				//总页数
+				int totalPageSize= (cates.getTotalcount()%_pageSize==0?cates.getTotalcount()/_pageSize:cates.getTotalcount()/_pageSize+1);
+				cates.setTotalPageSize(totalPageSize);
+				cates.setPageNo(_pageNo);
+			}
+			request.setAttribute("cates", cates);
+//			request.getRequestDispatcher("Cate.jsp").forward(request, response);
+			request.getRequestDispatcher("background/listShop.jsp").forward(request, response);
+		}catch(NumberFormatException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * 分页查询
+	 */
+	public PageModel<Product> getPageModel(int pageNo,int pageSize) throws DaoException{
+		ProductDao productDao=DaoFactory.getInstance("productdao", ProductDao.class);
+	
+		return productDao.getPageModel(pageNo, pageSize);
+	}
+	
+
+	
+
+
+	public List<Product> findProduct(int cid){
+		Connection conn = null;
+		List<Product> flag = null;
+		ProductDao productDao=DaoFactory.getInstance("productdao", ProductDao.class);
+		try{
+			conn = UtilC3P0.getConnection();
+			
+			flag = productDao.findProduct(cid);
+		
+		}catch(DaoException e){
+		
+			System.out.println(e.getMessage());
+		}catch (SQLException e) {
+			
+			e.printStackTrace();
+		}
+		return flag;
+	}
+
+
 	
 }

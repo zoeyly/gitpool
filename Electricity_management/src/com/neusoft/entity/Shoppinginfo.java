@@ -13,8 +13,11 @@ public class Shoppinginfo {
 	private int id;
 	private int aid;
 	private String nickname;
-	private int money;
+	private double money;
 	private long lasttime;
+	
+
+
 	public int getId() {
 		return id;
 	}
@@ -33,10 +36,10 @@ public class Shoppinginfo {
 	public void setNickname(String nickname) {
 		this.nickname = nickname;
 	}
-	public int getMoney() {
+	public double getMoney() {
 		return money;
 	}
-	public void setMoney(int money) {
+	public void setMoney(double money) {
 		this.money = money;
 	}
 	public long getLasttime() {
@@ -45,7 +48,7 @@ public class Shoppinginfo {
 	public void setLasttime(long lasttime) {
 		this.lasttime = lasttime;
 	}
-	public Shoppinginfo(int id, int aid, String nickname, int money, long lasttime) {
+	public Shoppinginfo(int id, int aid, String nickname, double money, long lasttime) {
 		super();
 		this.id = id;
 		this.aid = aid;
@@ -53,12 +56,11 @@ public class Shoppinginfo {
 		this.money = money;
 		this.lasttime = lasttime;
 	}
-	public Shoppinginfo(int aid, String nickname, int money, long lasttime) {
+	public Shoppinginfo(int aid, String nickname, double money) {
 		super();
 		this.aid = aid;
 		this.nickname = nickname;
 		this.money = money;
-		this.lasttime = lasttime;
 	}
 	public Shoppinginfo(int id) {
 		super();

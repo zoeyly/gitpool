@@ -10,6 +10,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.neusoft.entity.Account;
 import com.neusoft.entity.Account_product;
@@ -70,8 +71,12 @@ public class ckeditorServlet extends HttpServlet {
 					response.addCookie(use_ck);
 					response.addCookie(psw_ck);
 				}	
+				
+					HttpSession httpSession=request.getSession();
+					httpSession.setAttribute("user", mAcc);
+					
 				request.setAttribute("username", _username);
-				response.sendRedirect("login/login.jsp");
+				response.sendRedirect("login.jsp");
 			}else{
 				pw.append("<script> alert(\"unacc\")</script>");
 

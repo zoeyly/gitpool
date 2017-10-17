@@ -81,6 +81,7 @@ public class Product {
 		super();
 		this.id = id;
 	}
+
 	public Product(String pname, int cid, String pno, String pic, double price, int online, String pdetail) {
 		super();
 		this.pname = pname;

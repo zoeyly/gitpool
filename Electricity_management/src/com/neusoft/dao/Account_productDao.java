@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.neusoft.entity.Account;
 import com.neusoft.entity.Account_product;
+import com.neusoft.entity.PageModel;
 import com.neusoft.utils.DaoException;
 
 public interface Account_productDao {
@@ -20,4 +21,6 @@ public interface Account_productDao {
 	public Account_product doLogin(Account_product mAcc) throws DaoException;
 
 	public boolean updateAccount(Account_product mAcc)throws DaoException;
+	
+	public PageModel<Account_product> getPageModel(int pageNo, int pageSize);
 }

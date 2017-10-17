@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.neusoft.entity.Cate;
 import com.neusoft.entity.Product;
@@ -45,6 +46,7 @@ public class findProductSrevlet extends HttpServlet {
 			List<Product> list=mbs.showProductAll();
 			System.out.println(1111);
 			System.out.println(list);
+			
 			request.setAttribute("all", list);
 			request.getRequestDispatcher("findShop.jsp").forward(request, response);
 		}catch(DaoException e){

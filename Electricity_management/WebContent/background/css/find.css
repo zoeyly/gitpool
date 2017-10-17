@@ -18,18 +18,10 @@
    	 left:0px;
    	 background: graytext;"
 }
-.all{
-	margin-left: 5%;
-	margin-top: 10%;
+
+.msg_page div{
 	font-size:20px;
-	
-}
-.all table{
-	
-	text-align: center;
-	width: 95%;
-	
-}
-.all table tr{
-	height: 50px;
+	position: absolute;
+	top: 5%;
+	left: 5%;
 }

@@ -3,6 +3,7 @@ package com.neusoft.dao;
 import java.util.List;
 
 import com.neusoft.entity.Address;
+import com.neusoft.entity.PageModel;
 import com.neusoft.utils.DaoException;
 
 
@@ -15,6 +16,7 @@ public interface AddressDao {
 	public boolean changeAddress(Address address) throws DaoException;
 	//²éÑ¯ËùÓÐ
 	public List<Address> showAddressAll() throws DaoException;
+	public PageModel<Address> getPageModel(int pageNo, int pageSize) throws DaoException;
 
 	
 }

@@ -15,6 +15,7 @@ import org.apache.commons.dbutils.DbUtils;
 import com.neusoft.dao.OrderinfoDao;
 import com.neusoft.dao.RuleDao;
 import com.neusoft.entity.Orderinfo;
+import com.neusoft.entity.PageModel;
 import com.neusoft.entity.Rule;
 import com.neusoft.utils.DaoException;
 import com.neusoft.utils.DaoFactory;
@@ -193,6 +194,40 @@ public class OrderinfoService {
 	public List<Orderinfo> showOrderinfoAll() {
 		OrderinfoDao orderinfoDao=DaoFactory.getInstance("ordertimedao", OrderinfoDao.class);
 		return orderinfoDao.showOrderinfoAll();
+	}
+
+	public void getMsgsLogic(HttpServletRequest request,HttpServletResponse response) throws DaoException,ServletException,IOException{
+		String pageNo=request.getParameter("pageNo");
+		String pageSize=request.getParameter("pageSize");
+		try {
+			int _pageNo=Integer.parseInt(pageNo);
+			int _pageSize=Integer.parseInt(pageSize);
+			PageModel<Orderinfo>  cates=getPageModel(_pageNo,_pageSize);
+			if(cates!=null) {
+				//总页数
+				int totalPageSize= (cates.getTotalcount()%_pageSize==0?cates.getTotalcount()/_pageSize:cates.getTotalcount()/_pageSize+1);
+				cates.setTotalPageSize(totalPageSize);
+				cates.setPageNo(_pageNo);
+			}
+			request.setAttribute("cates", cates);
+//			request.getRequestDispatcher("Cate.jsp").forward(request, response);
+			request.getRequestDispatcher("background/listOrderinfo.jsp").forward(request, response);
+		}catch(NumberFormatException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * 分页查询
+	 */
+	public PageModel<Orderinfo> getPageModel(int pageNo,int pageSize) throws DaoException{
+		OrderinfoDao orderinfoDao=DaoFactory.getInstance("ordertimedao", OrderinfoDao.class);
+	
+		return orderinfoDao.getPageModel(pageNo, pageSize);
+	}
+
+	public static void main(String[] args) {
+	 System.out.println(	new OrderinfoService().getPageModel(2, 2));
 	}
 	
 }

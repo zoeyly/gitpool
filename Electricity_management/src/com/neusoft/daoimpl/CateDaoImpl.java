@@ -141,7 +141,9 @@ public  class CateDaoImpl implements CateDao {
 				
 				ResultSetHandler<List<Cate>> RSH = new BeanListHandler<Cate>(Cate.class);
 				Object [] params = {(pageNo-1)*pageSize,pageSize};
-				
+				if(conn.isClosed()) {
+					conn  =	UtilC3P0.getConnection();
+				}
 				List<Cate> msgs  = qRunner.query(conn, sql, RSH,params);
 				//给PageModel 赋值   每页显示数据
 				model.setDatas(msgs);

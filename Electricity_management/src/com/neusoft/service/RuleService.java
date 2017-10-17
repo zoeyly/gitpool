@@ -11,8 +11,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.dbutils.DbUtils;
 
+import com.neusoft.dao.ProductDao;
 import com.neusoft.dao.RuleDao;
 import com.neusoft.entity.PageModel;
+import com.neusoft.entity.Product;
 import com.neusoft.entity.Rule;
 import com.neusoft.utils.DaoException;
 import com.neusoft.utils.DaoFactory;
@@ -177,9 +179,41 @@ public class RuleService {
 		RuleDao ruleDao=DaoFactory.getInstance("ruledao", RuleDao.class);
 		return ruleDao.showRuleAll();
 	}
-	public PageModel<Rule> showPageModel(int pageNo,int pageSize){
-		RuleDao ruleDao=DaoFactory.getInstance("ruledao", RuleDao.class);
-		PageModel<Rule> mb = ruleDao.showPro(pageNo, pageSize);
-		return mb;
+
+
+	
+	public void getMsgsLogic(HttpServletRequest request,HttpServletResponse response) throws DaoException,ServletException,IOException{
+		String pageNo=request.getParameter("pageNo");
+		String pageSize=request.getParameter("pageSize");
+		try {
+			int _pageNo=Integer.parseInt(pageNo);
+			int _pageSize=Integer.parseInt(pageSize);
+			PageModel<Rule>  cates=getPageModel(_pageNo,_pageSize);
+			if(cates!=null) {
+				//总页数
+				int totalPageSize= (cates.getTotalcount()%_pageSize==0?cates.getTotalcount()/_pageSize:cates.getTotalcount()/_pageSize+1);
+				cates.setTotalPageSize(totalPageSize);
+				cates.setPageNo(_pageNo);
+			}
+			request.setAttribute("cates", cates);
+//			request.getRequestDispatcher("Cate.jsp").forward(request, response);
+			request.getRequestDispatcher("background/listRule.jsp").forward(request, response);
+		}catch(NumberFormatException e) {
+			e.printStackTrace();
+		}
 	}
+	
+	/**
+	 * 分页查询
+	 */
+	public PageModel<Rule> getPageModel(int pageNo,int pageSize) throws DaoException{
+		RuleDao ruleDao=DaoFactory.getInstance("ruledao", RuleDao.class);
+	
+		return ruleDao.getPageModel(pageNo, pageSize);
+	}
+
+	public static void main(String[] args) {
+	 System.out.println(	new RuleService().getPageModel(2, 2));
+	}
+	
 }

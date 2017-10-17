@@ -13,10 +13,15 @@ import org.apache.commons.dbutils.DbUtils;
 
 import com.neusoft.dao.Account_consumerDao;
 import com.neusoft.dao.AddressDao;
+import com.neusoft.dao.ProductDao;
 import com.neusoft.dao.RuleDao;
+import com.neusoft.dao.ShoppinginfoDao;
 import com.neusoft.entity.Account_consumer;
 import com.neusoft.entity.Address;
+import com.neusoft.entity.PageModel;
+import com.neusoft.entity.Product;
 import com.neusoft.entity.Rule;
+import com.neusoft.entity.Shoppinginfo;
 import com.neusoft.utils.DaoException;
 import com.neusoft.utils.DaoFactory;
 import com.neusoft.utils.UtilC3P0;
@@ -138,7 +143,7 @@ public class ConsumerService {
 		boolean flag = changeConsumer(consumer);
 		if(flag){
 			System.out.println(111);
-			response.sendRedirect("background/findConsumer.jsp");
+			response.sendRedirect("background/listConsumer.jsp");
 		}else{
 			System.out.println(2221);
 		}
@@ -184,5 +189,40 @@ public class ConsumerService {
 		Account_consumerDao account_consumerDao=DaoFactory.getInstance("consumerdao",Account_consumerDao.class);
 		return account_consumerDao.showAccount_consumerAll();
 	}
+	
+	
+	public void getMsgsLogic(HttpServletRequest request,HttpServletResponse response) throws DaoException,ServletException,IOException{
+		String pageNo=request.getParameter("pageNo");
+		String pageSize=request.getParameter("pageSize");
+		try {
+			int _pageNo=Integer.parseInt(pageNo);
+			int _pageSize=Integer.parseInt(pageSize);
+			PageModel<Account_consumer>  cates=getPageModel(_pageNo,_pageSize);
+			if(cates!=null) {
+				//总页数
+				int totalPageSize= (cates.getTotalcount()%_pageSize==0?cates.getTotalcount()/_pageSize:cates.getTotalcount()/_pageSize+1);
+				cates.setTotalPageSize(totalPageSize);
+				cates.setPageNo(_pageNo);
+			}
+			request.setAttribute("cates", cates);
+//			request.getRequestDispatcher("Cate.jsp").forward(request, response);
+			request.getRequestDispatcher("background/listShopinfo.jsp").forward(request, response);
+		}catch(NumberFormatException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * 分页查询
+	 */
+	public PageModel<Account_consumer> getPageModel(int pageNo,int pageSize) throws DaoException{
+		Account_consumerDao account_consumerDao=DaoFactory.getInstance("consumerdao",Account_consumerDao.class);
+		return account_consumerDao.getPageModel(pageNo, pageSize);
+	}
+
+	public static void main(String[] args) {
+	 System.out.println(	new ConsumerService().getPageModel(2, 2));
+	}
+	
 	
 }
