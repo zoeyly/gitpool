@@ -72,22 +72,22 @@
     				Product mb=ist.get(i);
     	%>
 	
-	<form id="jvForm" action="loginShopServlet?aid=${user.id}&nickname=${user.loginname}&price=<%=mb.getPrice() %>" method="post">
+	<form id="jvForm" action="loginShopServlet?aid=${user.id}&nickname=${user.loginname}&price=<%=mb.getPrice() %>&pname=<%=mb.getPname() %>" method="post">
 	<table class="table" width="200" border="1" cellspacing="1" cellpadding="1">
 	
 	  <tr>
 	    <td colspan="2" align="center" valign="middle"><%=mb.getId() %></td>
 	  </tr>
 	  <tr>
-	    <td align="center" valign="middle" ><%=mb.getPname() %></td>
+	    <td id="pname" name="pname" align="center" valign="middle" ><%=mb.getPname() %></td>
 	    <td align="center" valign="middle" ><%=mb.getCid()%></td>
 	  </tr>
 	  <tr>
-	    <td colspan="2" align="center" valign="middle"><%=mb.getPic()%></td>
+	    <td id="price" colspan="2" align="center" valign="middle"><%=mb.getPic()%></td>
 	  </tr>
 	  <tr>
 	    <td align="center" valign="middle"><%=mb.getPdetail()%></td>
-	    <td align="center" valign="middle"><button onclick="addShoppinginfoServlet" value="加入购物车">加入购物车</button></td>
+	    <td align="center" valign="middle"><button type="submit" value="加入购物车">加入购物车</button></td>
 	  </tr>
 	</table>
 	</form>

@@ -65,14 +65,10 @@ public class ShoppinginfoService {
 			}
 			System.out.println(e.getMessage());
 		}catch (SQLException e) {
-			try {
-				conn.rollback();
-			} catch (SQLException e1) {
-				e1.printStackTrace();
-			}
+			
 			e.printStackTrace();
 		}finally{
-			DbUtils.closeQuietly(conn);
+			
 		}
 		return false;
 	}

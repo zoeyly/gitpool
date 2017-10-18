@@ -70,17 +70,17 @@
 	<table class="table"  width="200" border="1" cellspacing="1" cellpadding="1">
    
 	  <tr>
-	    <td colspan="2" align="center" valign="middle">${pro.getId()}</td>
+	    <td colspan="2" align="center" valign="middle">${pro.getId}</td>
 	  </tr>
 	  <tr>
-	    <td align="center" valign="middle" >${pro.getPname()}</td>
-	    <td align="center" valign="middle" >${pro.getCid()}</td>
+	    <td align="center" valign="middle" >${pro.getPname}</td>
+	    <td align="center" valign="middle" >${pro.getCid}</td>
 	  </tr>
 	  <tr>
-	    <td colspan="2" align="center" valign="middle">${pro.getPic()}</td>
+	    <td colspan="2" align="center" valign="middle">${pro.getPic}</td>
 	  </tr>
 	  <tr>
-	    <td align="center" valign="middle">${pro.getPdetail()}</td>
+	    <td align="center" valign="middle">${pro.getPdetail}</td>
 	    <td align="center" valign="middle">
 	    	<button onclick="addShoppinginfoServlet" value="加入购物车">加入购物车</button>
 	    </td>

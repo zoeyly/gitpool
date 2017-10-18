@@ -92,7 +92,7 @@
  			</td>
 			<td>${user.id}</td>
 			<td>${user.loginname}</td>
-			<td><%=account.getNickname() %></td>
+			<td>${pname}</td>
 			<td><%=account.getMoney() %></td>
 		</tr>
 		

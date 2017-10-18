@@ -33,22 +33,28 @@ public class loginShopServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 //		response.getWriter().append("Served at: ").append(request.getContextPath());
+		System.out.println("aaa");
+		
 		response.setContentType("text/html;charset=UTF-8");
 		request.setCharacterEncoding("UTF-8");
-		
+	
 		String said = request.getParameter("aid");
 		Integer aid=Integer.parseInt(said);
 		String nickname = request.getParameter("nickname");
-		
+		System.out.println("价格"+request.getParameter("price"));
 		double money=Double.parseDouble((request.getParameter("price"))); 
-		
-		
+		String pname = request.getParameter("pname");
+		System.out.println("商品的名字为:"+pname);
+		request.setAttribute("aid", aid);
+		request.setAttribute("nickname", pname);
+		request.setAttribute("pname", pname);
+		System.out.println(aid+""+ nickname+""+ money+""+pname);
 		Shoppinginfo product=new Shoppinginfo(aid, nickname, money);
 		ShoppinginfoService service=new ShoppinginfoService();
 		boolean flag = service.addShoppinginfo(product);
 		if(flag){
 			System.out.println(111);
-			response.sendRedirect("cate.jsp");
+			request.getRequestDispatcher("shop.jsp").forward(request, response);
 		}else{
 			System.out.println(2221);
 		}

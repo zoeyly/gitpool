@@ -10,7 +10,7 @@ import com.mchange.v2.c3p0.ComboPooledDataSource;
 
 public class UtilC3P0 {
 	private static ComboPooledDataSource ds = null;
-	private static ThreadLocal<Connection> connectionHolder = new ThreadLocal<Connection>();
+/*	private static ThreadLocal<Connection> connectionHolder = new ThreadLocal<Connection>();*/
 	
 	static{
 		try{
@@ -21,14 +21,15 @@ public class UtilC3P0 {
 	}
 	//得到连接
 	public static Connection getConnection() throws SQLException{
-		Connection conn = connectionHolder.get(); 
-		if(conn!=null){
+		/*Connection conn = connectionHolder.get(); */
+	/*	if(conn!=null){
 			return conn;
 		}else{
 			conn = ds.getConnection();
 			connectionHolder.set(conn);
 			return conn;
-		}	
+		}	*/
+		return ds.getConnection();
 	}
 	
 	

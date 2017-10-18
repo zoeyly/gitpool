@@ -99,7 +99,8 @@ public class AccountDaoImpl implements AccountDao {
 //	
 	
 
-//	public static void main(String[] args) {
-//		System.out.println(new AccountDaoImpl().doLogin("admin", "admin"));
-//	}
+	public static void main(String[] args) {
+		Account account=new Account("admin", "admin");
+		System.out.println(new AccountDaoImpl().doLogin(account));
+	}
 }
