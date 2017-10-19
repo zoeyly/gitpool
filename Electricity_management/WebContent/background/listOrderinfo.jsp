@@ -426,16 +426,16 @@
             <div class="msg_page">
       		<div  style="text-align: center">
       	共<%=pageModel.getTotalcount() %>条记录 <%=pageModel.getPageNo() %>/<%=pageModel.getTotalPageSize() %>页
-      	&nbsp;<a href="http://localhost:8080/Electricity_management/findCatesServlet?pageNo=1&pageSize=5">首页</a> 
+      	&nbsp;<a href="http://localhost:8080/Electricity_management/listOrderinfoServlet?pageNo=1&pageSize=5">首页</a> 
       
-      	<a href="http://localhost:8080/Electricity_management/findCatesServlet?pageNo=<%=pageModel.getPageNo()-1==0? pageModel.getPageNo(): pageModel.getPageNo()-1%>&pageSize=5">上一页</a>&nbsp;
+      	<a href="http://localhost:8080/Electricity_management/listOrderinfoServlet?pageNo=<%=pageModel.getPageNo()-1==0? pageModel.getPageNo(): pageModel.getPageNo()-1%>&pageSize=5">上一页</a>&nbsp;
       
-      	<a href="http://localhost:8080/Electricity_management/findCatesServlet?pageNo=<%=pageModel.getPageNo()==pageModel.getTotalPageSize()? pageModel.getPageNo(): pageModel.getPageNo()+1%>&pageSize=5">下一页</a> 
+      	<a href="http://localhost:8080/Electricity_management/listOrderinfoServlet?pageNo=<%=pageModel.getPageNo()==pageModel.getTotalPageSize()? pageModel.getPageNo(): pageModel.getPageNo()+1%>&pageSize=5">下一页</a> 
       	
       	
-      	<a href="http://localhost:8080/Electricity_management/findCatesServlet?pageNo=<%=pageModel.getTotalPageSize()%>&pageSize=5">尾页</a>
+      	<a href="http://localhost:8080/Electricity_management/listOrderinfoServlet?pageNo=<%=pageModel.getTotalPageSize()%>&pageSize=5">尾页</a>
       	&nbsp;
-      	第<select onChange="if(this.value==options[selectedIndex].value){location='http://localhost:8080/Electricity_management/findCatesServlet?pageNo='+this.value+'&pageSize=5'}">
+      	第<select onChange="if(this.value==options[selectedIndex].value){location='http://localhost:8080/Electricity_management/listOrderinfoServlet?pageNo='+this.value+'&pageSize=5'}">
          
         
         <%

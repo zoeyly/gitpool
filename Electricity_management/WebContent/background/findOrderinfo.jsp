@@ -378,7 +378,7 @@
 			List<Orderinfo> list=mbs.showOrderinfoAll();
 			request.setAttribute("all", list);
 			%>
-		<table  border="1" cellspacing="1" cellpadding="1">
+		<table class="table"  border="1" cellspacing="1" cellpadding="1">
 			<tr style="height: 50px;">
 				<td>
 				<input type="checkbox" name="all" id="zong" value="复选框"  onclick="SelectAll()"/>全选</br>

@@ -45,6 +45,21 @@ public class OrderinfoDaoImpl implements OrderinfoDao {
 		}	
 		return false;
 	}
+	@Override
+	public boolean loginaddOrderinfo(Orderinfo orderinfo) throws DaoException {
+		try {
+			String sql = "insert into orderinfo(orderno,orderstatus,paystatus,ordertime,paytime,addrinfo,mask) values( ?, 2,1,now(),now(),?,?)";
+			int count = qr.update(conn, sql,orderinfo.getOrderno(),orderinfo.getAddrinfo(),orderinfo.getMask());
+				if(count>0){
+					System.out.println("插入订单成功");
+					System.out.println(count);
+					return true;
+				}
+		} catch (SQLException e) {
+			throw new DaoException("插入订单失败!",e);
+		}	
+		return false;
+	}
 
 	@Override
 	public boolean deleteOrderinfo(Orderinfo orderinfo) throws DaoException {
@@ -84,7 +99,7 @@ public class OrderinfoDaoImpl implements OrderinfoDao {
 		List<Orderinfo> list = null;
 		try {
 			list = qr.query(conn, sql, new BeanListHandler<Orderinfo>(Orderinfo.class));
-			System.out.println("qqqqqqqq");
+	
 			System.out.println("查询订单成功");
 			System.out.println(list);
 		} catch (SQLException e) {

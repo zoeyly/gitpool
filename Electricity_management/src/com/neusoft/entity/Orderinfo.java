@@ -14,8 +14,8 @@ public class Orderinfo {
 	private String orderno;
 	private int orderstatus;
 	private int paystatus;
-	private int ordertime;
-	private int paytime;
+	private long ordertime;
+	private long paytime;
 	private int addrinfo;
 	private String mask;
 	public int getId() {
@@ -42,16 +42,16 @@ public class Orderinfo {
 	public void setPaystatus(int paystatus) {
 		this.paystatus = paystatus;
 	}
-	public int getOrdertime() {
+	public long getOrdertime() {
 		return ordertime;
 	}
-	public void setOrdertime(int ordertime) {
+	public void setOrdertime(long ordertime) {
 		this.ordertime = ordertime;
 	}
-	public int getPaytime() {
+	public long getPaytime() {
 		return paytime;
 	}
-	public void setPaytime(int paytime) {
+	public void setPaytime(long paytime) {
 		this.paytime = paytime;
 	}
 	public int getAddrinfo() {
@@ -92,6 +92,13 @@ public class Orderinfo {
 	public Orderinfo(int id) {
 		super();
 		this.id = id;
+	}
+	
+	public Orderinfo(String orderno, int addrinfo, String mask) {
+		super();
+		this.orderno = orderno;
+		this.addrinfo = addrinfo;
+		this.mask = mask;
 	}
 	public Orderinfo() {
 		super();

@@ -83,10 +83,10 @@
 	    <td align="center" valign="middle" ><%=mb.getCid()%></td>
 	  </tr>
 	  <tr>
-	    <td id="price" colspan="2" align="center" valign="middle"><%=mb.getPic()%></td>
+	    <td id="price" colspan="2" align="center" valign="middle"><img src="img/<%=mb.getPic()%>.jpg" /></td>
 	  </tr>
 	  <tr>
-	    <td align="center" valign="middle"><%=mb.getPdetail()%></td>
+	    <td align="center" valign="middle"><%=mb.getPrice()%></td>
 	    <td align="center" valign="middle"><button type="submit" value="加入购物车">加入购物车</button></td>
 	  </tr>
 	</table>

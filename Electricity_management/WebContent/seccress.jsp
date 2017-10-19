@@ -1,12 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>Insert title here</title>
-</head>
-<body>
-	<div>成功！！</div>
-</body>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<style>
+		body{
+			margin-left: 5%;
+			margin-top: 2%;
+			width: 90%;
+			height: 700px;
+			background-image: url(img/u=1585713510,2218850288&fm=27&gp=0.jpg);
+			background-repeat: no-repeat;
+			background-size: 100% 100%;
+		}
+		
+	</style>
+	<body>
+		<button onclick="cate1.jsp"  value="返回商品页面">返回商品页面</button>
+	</body>
 </html>

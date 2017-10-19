@@ -45,9 +45,32 @@ public class OrderinfoService {
 			System.out.println(2221);
 		}
 	}
+
 	
 	//Ìí¼Ó
-	private boolean addOrderinfo(Orderinfo orderinfo){
+	public boolean loginaddOrderinfo(Orderinfo orderinfo){
+		Connection conn = null;
+		boolean flag = false;
+		OrderinfoDao orderinfoDao=DaoFactory.getInstance("ordertimedao", OrderinfoDao.class);
+		try{
+			conn = UtilC3P0.getConnection();
+			conn.setAutoCommit(false);
+			flag = orderinfoDao.loginaddOrderinfo(orderinfo);
+			
+		}catch(DaoException e){
+			
+			System.out.println(e.getMessage());
+		}catch (SQLException e) {
+			
+		}finally{
+			DbUtils.closeQuietly(conn);
+		}
+		return false;
+	}
+	
+	
+	//Ìí¼Ó
+	public boolean addOrderinfo(Orderinfo orderinfo){
 		Connection conn = null;
 		boolean flag = false;
 		OrderinfoDao orderinfoDao=DaoFactory.getInstance("ordertimedao", OrderinfoDao.class);

@@ -59,12 +59,29 @@
 </div>
 
 <div id="right">
+<% int index=0; double money=0;%>
+		<%
+			ShoppinginfoService shop = new ShoppinginfoService();
+			List<Shoppinginfo> sh=shop.showShoppinginfoAll();
+			request.setAttribute("all", sh);
+		%>
+		<%
+    			for(int i=0; i<sh.size(); i++){
+    				Shoppinginfo mb=sh.get(i);
+    				money+=mb.getMoney();
+    				index++;
+    			}
+    	%>
+<form action="loginorderinfoServlet?orderno=<%=index+47651243 %>&addrinfo=${user.id}&mask=<%=index %>" method="post">
+
 	
 	<div  id="button" >
-		<a href="from.jsp">
-			<button value="确认购买">确认购买</button>
-		</a>
+		
+			<button type="submit" value="确认购买">确认购买</button>
+		
 	</div>
+</form>
+
 
 	<table class="table"  style="width: 70%" border="1" cellspacing="1" cellpadding="1">
 		<tr>

@@ -33,28 +33,35 @@
 	<div  id="name">
 		　　订单状况
 	</div>
-		<% int index=0; double money=0;%>
+		
+		
+		<%
+			OrderinfoService bs = new OrderinfoService();
+			List<Orderinfo> ist=bs.showOrderinfoAll();
+			ist.get(ist.size()-1); 
+		%>
+		<div>
+			订单id：<%=ist.get(ist.size()-1).getId() %>
+		</div>	
+		<div>
+			用户id：<%=ist.get(ist.size()-1).getAddrinfo() %>
+		</div>
+		<div>
+			商品总件数：<%=ist.get(ist.size()-1).getMask() %>
+		</div>
+		<%  double money=0;%>
 		<%
 			ShoppinginfoService mbs = new ShoppinginfoService();
 			List<Shoppinginfo> list=mbs.showShoppinginfoAll();
-			request.setAttribute("all", list);
+			for(int i=0; i<list.size(); i++){
+				Shoppinginfo mb=list.get(i);
+				money+=mb.getMoney();
+			}
 		%>
-		<%
-    			for(int i=0; i<list.size(); i++){
-    				Shoppinginfo mb=list.get(i);
-    				money+=mb.getMoney();
-    				index++;
-    			}
-    	%>
-			
-			
-		<div>
-			商品总件数：<%=index %>
-		</div>
 		<div>
 			商品总价格：<%=money %>
 		</div>
-		
+
 	<div  id="name">
 		　　收货地址
 	</div>

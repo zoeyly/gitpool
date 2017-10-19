@@ -17,4 +17,5 @@ public interface OrderinfoDao {
 		public List<Orderinfo> showOrderinfoAll() throws DaoException;
 		
 		public PageModel<Orderinfo> getPageModel(int pageNo, int pageSize) throws DaoException;
+		boolean loginaddOrderinfo(Orderinfo orderinfo) throws DaoException;
 }
