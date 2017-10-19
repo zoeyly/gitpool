@@ -19,6 +19,9 @@
 		
 	</style>
 	<body>
-		<button onclick="cate1.jsp"  value="返回商品页面">返回商品页面</button>
+	<a href="cate.jsp">
+	<button   value="返回商品页面">返回商品页面</button>
+	</a>
+		
 	</body>
 </html>

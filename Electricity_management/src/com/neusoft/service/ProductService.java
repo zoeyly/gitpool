@@ -236,7 +236,7 @@ public class ProductService {
 	
 
 
-	public List<Product> findProduct(int cid){
+	public List<Product> findProduct(Product cid){
 		Connection conn = null;
 		List<Product> flag = null;
 		ProductDao productDao=DaoFactory.getInstance("productdao", ProductDao.class);

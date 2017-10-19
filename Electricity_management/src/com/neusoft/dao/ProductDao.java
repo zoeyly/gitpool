@@ -14,7 +14,7 @@ public interface ProductDao {
 	public List<Product> showProductAll() throws DaoException;
 	public PageModel<Product> getPageModel(int pageNo, int pageSize) throws DaoException;
 	
-	public List<Product> findProduct(int cid) throws DaoException;
+	public List<Product> findProduct(Product cid) throws DaoException;
 
 	
 }

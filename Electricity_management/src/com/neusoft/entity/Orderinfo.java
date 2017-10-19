@@ -18,6 +18,7 @@ public class Orderinfo {
 	private long paytime;
 	private int addrinfo;
 	private String mask;
+	
 	public int getId() {
 		return id;
 	}
@@ -66,8 +67,14 @@ public class Orderinfo {
 	public void setMask(String mask) {
 		this.mask = mask;
 	}
-	public Orderinfo(int id, String orderno, int orderstatus, int paystatus, int ordertime, int paytime,
-			int addrinfo, String mask) {
+	@Override
+	public String toString() {
+		return "Orderinfo [id=" + id + ", orderno=" + orderno + ", orderstatus=" + orderstatus + ", paystatus="
+				+ paystatus + ", ordertime=" + ordertime + ", paytime=" + paytime + ", addrinfo=" + addrinfo + ", mask="
+				+ mask + "]";
+	}
+	public Orderinfo(int id, String orderno, int orderstatus, int paystatus, long ordertime, long paytime, int addrinfo,
+			String mask) {
 		super();
 		this.id = id;
 		this.orderno = orderno;
@@ -75,28 +82,6 @@ public class Orderinfo {
 		this.paystatus = paystatus;
 		this.ordertime = ordertime;
 		this.paytime = paytime;
-		this.addrinfo = addrinfo;
-		this.mask = mask;
-	}
-	public Orderinfo(String orderno, int orderstatus, int paystatus, int ordertime, int paytime,
-			int addrinfo, String mask) {
-		super();
-		this.orderno = orderno;
-		this.orderstatus = orderstatus;
-		this.paystatus = paystatus;
-		this.ordertime = ordertime;
-		this.paytime = paytime;
-		this.addrinfo = addrinfo;
-		this.mask = mask;
-	}
-	public Orderinfo(int id) {
-		super();
-		this.id = id;
-	}
-	
-	public Orderinfo(String orderno, int addrinfo, String mask) {
-		super();
-		this.orderno = orderno;
 		this.addrinfo = addrinfo;
 		this.mask = mask;
 	}
@@ -104,13 +89,28 @@ public class Orderinfo {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	@Override
-	public String toString() {
-		return "Orderinfo [id=" + id + ", orderno=" + orderno + ", orderstatus=" + orderstatus + ", paystatus="
-				+ paystatus + ", ordertime=" + ordertime + ", paytime=" + paytime + ", addrinfo=" + addrinfo + ", mask="
-				+ mask + "]";
+	public Orderinfo(String orderno, int orderstatus, int paystatus, long ordertime, long paytime, int addrinfo,
+			String mask) {
+		super();
+		this.orderno = orderno;
+		this.orderstatus = orderstatus;
+		this.paystatus = paystatus;
+		this.ordertime = ordertime;
+		this.paytime = paytime;
+		this.addrinfo = addrinfo;
+		this.mask = mask;
 	}
-	
+	public Orderinfo(String orderno, int addrinfo, String mask) {
+		super();
+		this.orderno = orderno;
+		this.addrinfo = addrinfo;
+		this.mask = mask;
+	}
+	public Orderinfo(int id) {
+		super();
+		this.id = id;
+	}
+
 	
 	
 }

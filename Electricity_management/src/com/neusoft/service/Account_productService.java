@@ -30,7 +30,7 @@ public class Account_productService {
 		boolean flag = addproduct(consumer);
 		if(flag){
 			System.out.println(111);
-			response.sendRedirect("index.jsp");
+			response.sendRedirect("login/index.jsp");
 		}else{
 			System.out.println(2221);
 		}

@@ -137,11 +137,11 @@ public class ProductDaoImpl  implements ProductDao{
 	}
 
 	@Override
-	public List<Product> findProduct(int cid) throws DaoException {
+	public List<Product> findProduct(Product cid) throws DaoException {
 	try {
 		String sql = "select id,pname,cid,pno,pic,price,online,pdetail from product  where cid=?";
 		ResultSetHandler<List<Product>> rsh=  new BeanListHandler<Product>(Product.class);
-			List<Product> count = qr.query(conn, sql, rsh,cid); 
+			List<Product> count = qr.query(conn, sql, rsh,cid.getCid()); 
 				if(count!=null){
 					System.out.println("≤È’“≥…π¶");
 					System.out.println(count);
@@ -156,7 +156,8 @@ public class ProductDaoImpl  implements ProductDao{
 
 
 	public static void main(String[] args) {
-		System.out.println(new ProductDaoImpl().findProduct(1));
+		Product product=new Product(1);
+		System.out.println(new ProductDaoImpl().findProduct(product));
 	}
 
 }

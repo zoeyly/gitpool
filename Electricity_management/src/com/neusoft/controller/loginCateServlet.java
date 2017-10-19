@@ -41,7 +41,7 @@ public class loginCateServlet extends HttpServlet {
 		Integer cid=Integer.parseInt(scid);
 		Product product=new Product();
 		product.setCid(cid);
-		List<Product> flag =productService.findProduct(cid);
+		List<Product> flag =productService.findProduct(product);
 		
 		if(flag!=null){
 			request.setAttribute("flag", flag);

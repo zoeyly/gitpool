@@ -39,7 +39,7 @@
 		</form>
 	</div>
 	<div id="registered-content">
-		<from>
+		<form id="insert" name="loginForm" action="http://localhost:8080/Electricity_management/zhuceServlet" method="post">
 		<div class="inp">
 			<input id="loginname" name="loginname" type="text" placeholder="请输入用户名">
 		</div>
@@ -48,7 +48,7 @@
 		</div>
 		<div class="inp"><input type="password" placeholder="请再次输入密码"></div>
 		<div class="inp"><input type="text" placeholder="手机号码"></div>
-		<div class="login">立即注册</div>
+		<div class="login" onclick="document.getElementById('insert').submit();">立即注册</div>
 	</div>
 	</from>
 </div>
