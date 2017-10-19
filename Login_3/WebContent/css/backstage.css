@@ -1,0 +1,210 @@
+.backstage{
+	margin: 0 auto;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    height: 730px;
+}
+
+.top{
+	position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 80px;
+    padding: 0 20px;
+    z-index: 2;
+    overflow: hidden;
+}
+
+.name{
+	font-size: 18px;
+    line-height: 80px;
+    float: left;
+    width: 220px;
+}
+
+.middle{
+	float: left;
+    width: 522px;
+}
+
+.middle a{
+	text-decoration:none;
+}
+
+.middle li{
+	height: 80px;
+	width: 80px;
+	text-align: center;
+}
+
+.middle li:hover{
+	background: gray;
+	
+	
+}
+ ul li{
+	/*改变 ul类型*/
+	display: inline-block;
+	  
+}
+
+
+.down #left{
+	height: 980px;
+	width: 60%;
+	position: absolute;
+	top: 80px;
+    background-color:  darkgray;
+}
+
+
+
+
+.down .right{
+	width: 89%;
+	height: 980px;
+	position: relative;
+	left: 150px;
+	top: 80px;
+	background: #eee;
+}
+.down .right .right_top{
+	height: 36px;
+	line-height: 36px;
+	width: 100%;
+	position: absolute;
+	background: #e2e2e2;
+	
+}
+.down .right .right_top a{
+	display: block;
+	width: 100px;
+	text-align: center;
+	color: white;
+	background: #4dc2e6;
+	color: ;
+}
+
+.down .right .right_center{
+	width: 100%;
+	height: 80px;
+	position: absolute;
+	top: 50px;
+}
+
+.down .right .right_center ul li {
+	width: 15%;
+}
+.down .right .right_center ul li div{
+	width: 120px;
+	height: 80px;
+	color: white;
+	position: relative;
+}
+.down .right .right_center  #centher_left{
+	width: 70%;
+	position: absolute;
+	
+}
+.down .right .right_center  #centher_left img{
+	padding-left: 35px;
+	padding-top: 15px;
+}
+.down .right .right_center  #centher_left p{
+	text-align: center;
+}
+.down .right .right_center  #center_right{
+
+	width: 30%;
+	line-height: 80px;
+	text-align: center;
+	overflow: hidden;
+	position: absolute;
+	left: 70%;
+}
+
+.down .right .panel{
+	background: white;
+	width: 95%;
+	height: 420px;
+	text-align: center;
+	font-size: 18px;
+	overflow: hidden;
+	position: absolute;
+	left: 20px;
+	top: 180px;
+}
+
+.down .right .panel img{
+	width: 140%;
+	height: 80%;
+}
+.down .right #right_down{
+	height: 260px;
+	width: 95%;
+	position: absolute;
+	top: 630px;
+	left: 20px;
+}
+
+.down .right #right_down #node{
+	width: 35%;
+	height: 100%;
+	text-align: center;
+	background: white;
+	position: absolute;
+	
+}
+
+
+.down .right #right_down #p1{
+	font-size: 18px;
+	float: left;
+	margin-left: 20px;
+}
+.down .right #right_down a{
+	font-size: 10px;
+	margin-top: 20px;
+	color: gray;
+	float: right;
+}
+
+
+
+.down .right #right_down #shop{
+	width: 60%;
+	height: 100%;
+	text-align: center;
+	background: white;
+	position: absolute;
+	left: 37%;
+}
+
+.down .right #right_down #shop em{
+	margin-left: 10px;
+	display: block;
+	width: 30px;
+	height: 30px;
+	background: red;
+}
+
+
+.down .right #right_down #shop a{
+	margin-right: 20px;
+	
+}
+
+
+
+
+
+
+
+
+
+
+
