@@ -1,0 +1,27 @@
+.righ{
+	text-align: center;
+	
+}
+.table{
+	font-size:25px;
+	width:70%;
+	position: absolute;
+	top: 10%;
+	left: 5%;
+}
+.message{
+	 text-align: center;
+	 width: 100%;
+	 height: 100%; 
+	 position: absolute;
+   	 top: 50px;
+   	 left:0px;
+   	 background: graytext;"
+}
+
+.msg_page div{
+	font-size:20px;
+	position: absolute;
+	top: 5%;
+	left: 5%;
+}

@@ -1,0 +1,61 @@
+@charset "utf-8";
+/* CSS Document */
+
+/*index-right*/
+.right-menu{position:absolute;top:80px;bottom:0;left:150px;right:0;z-index:1;}
+.l-tab-links{height:36px;background:#e2e2e2;}
+.l-tab-links ul{height:36px;overflow:hidden;position:absolute;top:0;zoom:1;}
+.l-select{background:#4dc2e6;}
+
+.close{width:24px;height:24px;padding-right:14px;background: url(../img/close.png) no-repeat center;float:right;margin-top:6px;}
+.close:hover{background: url(../img/close-bg.png)  no-repeat center;}
+.l-tab-links ul li{float:left;margin-right:5px;position:relative;overflow:hidden;font-size:14px;line-height:36px;}
+.l-tab-links ul li a{padding:0 8px 0 25px;color:#fff;}
+.l-tab-content{background:#eee;position:relative;min-height:650px;overflow: auto;}
+.tab-content-item{min-height:831px;display:block;}
+.home{padding:20px 24px;position:absolute;left:0;top:0;right:0;bottom:0;}
+
+.space-style{margin-bottom:10px;}
+.col-xs{width:16.66%;float:left;overflow:hidden;}
+.title-button{margin-bottom:10px;display:block;text-align:center;margin:0 10px;}
+.bg-deep{color:#fff;background:#438eb9;}
+.carousel{position:relative;}
+.left-img{background:#60a7d0;width:100px;height:80px;position:absolute;top:0;left:0;}
+.left-img  i{font-size:36px;margin-top:8px;display:inline-block;}
+.left-img p{font-size:14px;line-height:22px;}
+.right-info{position:relative;height:80px;margin-left:100px;vertical-align:middle;top:0;text-align:center;font-size:22px;line-height:80px;}
+.bg-red{background:#ff5757;color:#fff;}
+.bg-color-red{background:#ff7171;}
+.bg-green{background:#72b63f;color:#fff;}
+.bg-color-green{background:#9cd159;}
+.bg-orange{color:#fff;background:#ff6633;}
+.bg-color-orange{background:#ff8e68;}
+.bg-purple{color:#fff;background:#8775a7;}
+.bg-color-purple{background:#ad96d6;}
+.bg-yellow{color:#fff;background:#f5c23d;}
+.bg-color-yellow{background:#fddf39;}
+
+/*折线图*/
+.home-goods{position:absolute;top:127px;bottom:0;left:35px;right:0;padding:10px;}
+.panel{background:#fff;border-radius:4px;height:400px;width:95%;}
+.home-mychart{text-align:center;}
+.home-mychart p{line-height:30px;font-size:18px;margin-bottom:25px;}
+
+/*销售情况*/
+.order-form{display:block;position:absolute;bottom:15px;left:35px;right:0;}
+.col-xs-3{width:30%;float:left;}
+.admin-info{margin-right:10px;background:url(../img/bg_img.png) repeat;position:relative;border:1px solid #ddd;}
+.title-name{font-size:16px;padding:0 20px;border-bottom:1px solid #ddd;height:40px;line-height:40px;}
+.title-name i{line-height:1.1;font-weight:800;border-left:3px solid #3293ca;padding-left:15px;font-size:14px;margin-top:15px;}
+.title-name a{float:right;font-size:12px;color:#999;}
+.record-list{line-height:30px;width:100%;text-align:center;font-size:12px;}
+.record-list tr td{padding:5px 10px;line-height:23px;border-bottom:1px solid #ddd;color:#666;}
+.col-xs-6{width:68%;float:left;}
+.frame{background:url(../img/bg_img.png) repeat;position:relative;border:1px solid #ddd;}
+.table-list thead{background:#ededed;line-height:30px;}
+.table{width:100%;display:table;}
+.table thead tr th{padding:5px 10px;line-height:23px;vertical-align:middle;}
+.table-list  thead th{text-align:center;}
+.table tbody tr td{padding:5px 10px;line-height:23px;vertical-align:middle;border-bottom:1px solid #ddd;color:#666;text-align:center;}
+.table-list  em{background:#f33;color:#fff;display:block;width:20px;height:20px;text-align:center;vertical-align:middle;}
+
