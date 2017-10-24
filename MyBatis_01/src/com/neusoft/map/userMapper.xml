@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+
+<mapper namespace="com.neusoft.entity.Neusoft_User">
+<!--查询    -->
+<resultMap id="map" type="com.neusoft.entity.Neusoft_User">
+		<!-- id		主键 -->
+		<id column="id" property="id"/>
+		<result column="userName" property="userName"/>
+		<result column="password" property="password"/>
+		<result column="ip" property="userIp"/>
+	</resultMap> 
+	<!-- 
+	<select id="findById"  parameterType="int"  resultMap="com.neusoft.entity.Neusoft_User">
+	 -->
+   <select id="findById"  parameterType="int"  resultMap="map">
+  	  select * from neusoft_user where id=#{id}
+  </select>
+  
+  
+<!--查询    -->  
+   <select id="findByUserId"  parameterType="com.neusoft.entity.Neusoft_User"  resultType="com.neusoft.entity.Neusoft_User">
+  	  select * from neusoft_user where id=#{id}
+  </select>
+  
+<!--查询    -->  
+  <select id="find"  parameterType="hashmap"  resultType="com.neusoft.entity.Neusoft_User">
+  	  select * from neusoft_user where username=#{username} and password=#{password}
+  </select>
+<!--查询    --> 
+
+	<resultMap id="usermap" type="com.neusoft.entity.Neusoft_User">
+		<!-- id		主键 -->
+		<id column="id" property="id"/>
+		<result column="userName" property="userName"/>
+		<result column="password" property="password"/>
+		<result column="ip" property="userIp"/>
+	</resultMap> 
+  <select id="findall2"   resultMap="usermap">
+  	  select * from neusoft_user 
+  </select>
+<!--查询    -->
+   <select id="findAllByPage"   resultType="com.neusoft.entity.Neusoft_User">
+  	  select * from neusoft_user 
+  </select>
+  
+  
+  
+<!-- 查询 阅读 --> 
+<resultMap id="readermap" type="com.neusoft.entity.Neusoft_User">
+		<!-- id		主键 -->
+		<id column="id" property="id"/>
+		<result column="userName" property="userName"/>
+		<result column="password" property="password"/>
+		<result column="ip" property="userIp"/>
+		<collection property="readers" javaType="ArrayList" column="userId" ofType="com.neusoft.entity.Reader">
+			<id column="readerid" property="readerid"/>
+			<result column="userId" property="userId"/>
+			<result column="money" property="money"/>
+		
+		</collection>
+		
+	</resultMap> 
+  <select id="findAuthor"   resultMap="readermap">
+  	  select * from neusoft_user u
+  	  left join reader r
+  	  on u.id=r.userId
+  	  where u.id=#{id}
+  </select> 
+  
+
+<!--插入  --> 
+ 
+
+
+
+</mapper>
+
+

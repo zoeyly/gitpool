@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.neusoft.entity.Author">
+	<resultMap type="Author" id="authorMap">
+	
+		 <id column="authorId"  property="AuthorId"/>
+		 <result column="realName" property="realName"/>
+	   	 <result column="IDCard" property="IDCard"/>
+		
+	<association property="user" column="userId" javaType="com.neusoft.entity.Neusoft_User">
+		<!-- 
+		id		主键
+		<id column="id" property="id"/>
+		<result column="userName" property="userName"/>
+		<result column="password" property="password"/>
+		<result column="ip" property="userIp"/>
+		 -->
+		 <constructor>
+		 	<arg column="id" javaType="int"/>
+		 	<arg column="userName" javaType="java.lang.String"/>
+		 	<arg column="password" javaType="java.lang.String"/>
+		 	<arg column="ip" javaType="java.lang.String"/>
+		 </constructor>
+	</association>
+	</resultMap>
+	<select id="findAuthor" resultMap="authorMap"> 
+		select * from author
+		left join Neusoft_User user
+		on author.userId=user.id
+	</select>
+	
+	
+	
+	
+	
+</mapper>
